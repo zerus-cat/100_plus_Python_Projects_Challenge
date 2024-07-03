@@ -1,0 +1,39 @@
+import random
+import time
+def input_is(strsay):
+    while True:
+        x=input(strsay)
+        if x.isdigit():
+          
+            break
+        else:
+            print('你输入的不是数字，请重新输入：')
+    return x
+quesnum=0
+winnum=0
+stoptime=60
+start=time.perf_counter()
+end=time.perf_counter()
+while end-start<=stoptime:
+    x=random.randint(0,1000)
+    y=random.randint(1,1000)
+    yunsuan=['+','-','*','/']
+    s=random.choice(yunsuan)
+    quesnum+=1
+    if s=='-':
+        result=x-y
+    elif s=='+':
+        result=x+y
+    elif s=='*':
+        result=x*y
+    else:
+        result=x/y
+    answer=eval(input_is(f'问题{quesnum},请输入答案:{x} {s} {y}=')) 
+    if answer==result:
+        print('你答对了')
+        winnum+=1
+    else:
+        print('你答错了')
+    end=time.perf_counter()
+wins=winnum/quesnum
+print(f'时间到了，你答了{quesnum}问题，正确率{wins:.2%}')
